@@ -25,20 +25,18 @@ def remove_not_strings(flat_list):
     return b
 
 
-def make_histogram(keywords_list):
-    labels, counts = np.unique(keywords_list,return_counts=True)
-    ticks = range(len(counts))
-    plt.bar(ticks,counts, align='center')
-    plt.xticks(ticks, labels)
-    plt.savefig('test.png')
+def make_histogram(label_count_dict):
+     df = pd.DataFrame(label_count_dict)
+     pass
 
 def make_count_table(keywords_list, path = 'counts.csv'):
     labels, counts = np.unique(keywords_list,return_counts=True)
     label_count_dict = {}
     label_count_dict['labels'] = labels
     label_count_dict['counts'] = counts
-    df = pd.DataFrame(label_count_dict)
+    df = pd.DataFrame(label_count_dict).sort_values(by='counts', ascending=False)
     df.to_csv(path, encoding='utf-8', line_terminator='\r\n')
+    return label_count_dict
    
         
     
